@@ -15,7 +15,9 @@ class WizStockBarcodesRead(models.AbstractModel):
                 self._set_messagge_info(
                     'more_match', _('More than one product found'))
                 return
-            self.action_product_scaned_post(product)
-            self.action_done()
-            return
+            if product:
+                self.action_product_scaned_post(product)
+                self.action_done()
+                self._set_messagge_info('success', _('Barcode read correctly'))
+                return
         return super(WizStockBarcodesRead, self).process_barcode(barcode)
