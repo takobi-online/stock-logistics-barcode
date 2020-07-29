@@ -83,11 +83,11 @@
                 <label for="free_insert">
                     Free Insert
                 </label>
-                <field name="free_insert" widget="boolean_toggle"/>
+                <field name="free_insert" widget="barcode_boolean_toggle"/>
                 <label for="new_picking">
                     New Picking
                 </label>
-                <field name="new_picking" widget="boolean_toggle"/>
+                <field name="new_picking" widget="barcode_boolean_toggle"/>
             </xpath>
             <field name="location_id" position="before">
                 <field name="picking_type_id" invisible="1"/>
