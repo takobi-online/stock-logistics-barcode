@@ -80,12 +80,27 @@
                     Confirmed moves allowed
                 </label>
                 <field name="confirmed_moves" widget="barcode_boolean_toggle"/>
+                <label for="free_insert">
+                    Free Insert
+                </label>
+                <field name="free_insert" widget="barcode_boolean_toggle"/>
+                <label for="new_picking">
+                    New Picking
+                </label>
+                <field name="new_picking" widget="barcode_boolean_toggle"/>
             </xpath>
             <field name="location_id" position="before">
                 <field name="picking_type_code" invisible="1" force_save="1"/>
                 <field name="picking_state" invisible="1"/>
                 <field name="picking_has_packages" invisible="1"/>
+                <field name="picking_type_id" invisible="1"/>
                 <field name="picking_id"/>
+            </field>
+            <field name="location_id" position="after">
+                <field name="location_dest_id"
+                       attrs="{'invisible': [('picking_type_code', '!=', 'internal')],
+                               'readonly': [('manual_entry', '=', False)], 'required': [('manual_entry', '=', True)]}"
+                       force_save="1"/>
             </field>
             <field name="product_qty" position="after">
                 <field name="picking_product_qty"/>
@@ -105,6 +120,11 @@
                     </group>
                 </group>
             </xpath>
+            <button name="action_manual_entry" position="after">
+                <button name="action_automatic_entry" type="object" string="Automatic entry" icon="fa-plus"
+                        class="btn-primary barcode-automatic-entry" invisible="1"
+                />
+            </button>
         </field>
     </record>
 
